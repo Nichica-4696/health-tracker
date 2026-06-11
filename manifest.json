@@ -1,0 +1,25 @@
+{
+  "name": "健康メモ",
+  "short_name": "健康メモ",
+  "description": "ゆるい健康習慣トラッカー",
+  "start_url": "/health-tracker/",
+  "scope": "/health-tracker/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf7f2",
+  "theme_color": "#6a9a6b",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

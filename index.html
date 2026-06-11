@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="健康メモ">
+  <meta name="theme-color" content="#6a9a6b">
+  <title>健康メモ</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <main id="app">
+
+    <!-- ========== 今日タブ ========== -->
+    <section id="tab-today" class="tab-content active">
+      <header class="screen-header">
+        <p class="date-display" id="date-display"></p>
+      </header>
+
+      <div class="record-card">
+        <p class="question-label">🍶 今日のお酒</p>
+        <div class="button-group" data-category="alcohol">
+          <button class="choice-btn" data-value="none">なし🌿</button>
+          <button class="choice-btn" data-value="one">1杯</button>
+          <button class="choice-btn" data-value="more">2杯以上</button>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <p class="question-label">🍪 間食</p>
+        <div class="button-group" data-category="snack">
+          <button class="choice-btn" data-value="none">なし</button>
+          <button class="choice-btn" data-value="little">少し</button>
+          <button class="choice-btn" data-value="much">食べすぎた</button>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <p class="question-label">🚶 体を動かした？</p>
+        <div class="button-group" data-category="exercise">
+          <button class="choice-btn" data-value="yes">はい</button>
+          <button class="choice-btn" data-value="no">いいえ</button>
+        </div>
+      </div>
+
+      <div id="encourage-msg" class="encourage hidden"></div>
+
+      <div id="body-metrics" class="body-metrics hidden">
+        <p class="metrics-text"></p>
+      </div>
+
+      <div class="export-area">
+        <button id="export-btn" class="export-btn">📥 データを書き出す</button>
+      </div>
+    </section>
+
+    <!-- ========== グラフタブ ========== -->
+    <section id="tab-chart" class="tab-content">
+      <header class="screen-header">
+        <p class="screen-title">振り返り</p>
+      </header>
+
+      <div class="chart-card">
+        <p class="chart-title">過去4週間の習慣（日数）</p>
+        <canvas id="weekly-chart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <p class="chart-title">体重・体脂肪率の推移（過去30日）</p>
+        <canvas id="weight-chart"></canvas>
+        <p id="no-weight-data" class="no-data-msg hidden">
+          体重データがまだありません。<br>ショートカットアプリから記録できます。
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== 今月タブ ========== -->
+    <section id="tab-monthly" class="tab-content">
+      <header class="screen-header">
+        <p class="screen-title" id="monthly-title">今月のまとめ</p>
+      </header>
+      <div id="monthly-content"></div>
+    </section>
+
+  </main>
+
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="today">
+      <span class="tab-icon">🌿</span>
+      <span class="tab-label">今日</span>
+    </button>
+    <button class="tab-btn" data-tab="chart">
+      <span class="tab-icon">📊</span>
+      <span class="tab-label">グラフ</span>
+    </button>
+    <button class="tab-btn" data-tab="monthly">
+      <span class="tab-icon">🗓</span>
+      <span class="tab-label">今月</span>
+    </button>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
