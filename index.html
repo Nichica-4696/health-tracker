@@ -19,11 +19,16 @@
     <!-- ========== 今日タブ ========== -->
     <section id="tab-today" class="tab-content active">
       <header class="screen-header">
-        <p class="date-display" id="date-display"></p>
+        <div class="date-nav">
+          <button class="date-arrow" id="prev-day" aria-label="前の日">‹</button>
+          <p class="date-display" id="date-display"></p>
+          <button class="date-arrow" id="next-day" aria-label="次の日">›</button>
+        </div>
+        <button class="today-jump hidden" id="today-jump">今日に戻る</button>
       </header>
 
       <div class="record-card">
-        <p class="question-label">🍶 今日のお酒</p>
+        <p class="question-label">🍶 お酒</p>
         <div class="button-group" data-category="alcohol">
           <button class="choice-btn" data-value="none">なし🌿</button>
           <button class="choice-btn" data-value="one">1杯</button>

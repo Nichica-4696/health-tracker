@@ -68,6 +68,53 @@ html, body {
   letter-spacing: 0.02em;
 }
 
+.date-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.date-nav .date-display {
+  flex: 1;
+  text-align: center;
+}
+
+.date-arrow {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, opacity 0.12s;
+}
+.date-arrow:active { background: var(--border); }
+.date-arrow:disabled { opacity: 0.25; cursor: default; }
+
+.today-jump {
+  display: block;
+  margin: 10px auto 0;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 5px 18px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: inherit;
+  cursor: pointer;
+}
+.today-jump:active { background: var(--border); }
+.today-jump.hidden { display: none; }
+
 .screen-title {
   font-size: 1.1rem;
   font-weight: 600;

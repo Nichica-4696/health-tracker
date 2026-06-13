@@ -141,13 +141,29 @@ function buildEncouragement(rec) {
 // Today tab
 // ============================================================
 
+let selectedKey;
+
 function initTodayTab() {
-  document.getElementById('date-display').textContent = formatDateJP(getTodayKey());
+  selectedKey = getTodayKey();
+
+  document.getElementById('prev-day').addEventListener('click', () => {
+    selectedKey = shiftDate(selectedKey, -1);
+    renderToday();
+  });
+  document.getElementById('next-day').addEventListener('click', () => {
+    if (selectedKey >= getTodayKey()) return;
+    selectedKey = shiftDate(selectedKey, 1);
+    renderToday();
+  });
+  document.getElementById('today-jump').addEventListener('click', () => {
+    selectedKey = getTodayKey();
+    renderToday();
+  });
 
   document.querySelectorAll('.choice-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const category = btn.closest('.button-group').dataset.category;
-      patchDayRecord(getTodayKey(), { [category]: btn.dataset.value });
+      patchDayRecord(selectedKey, { [category]: btn.dataset.value });
       renderToday();
       if (navigator.vibrate) navigator.vibrate(8);
     });
@@ -157,8 +173,23 @@ function initTodayTab() {
   renderToday();
 }
 
+function relativeLabel(key, today) {
+  const diff = Math.round((keyToDate(today) - keyToDate(key)) / 86400000);
+  if (diff === 0) return '今日';
+  if (diff === 1) return 'きのう';
+  if (diff === 2) return 'おととい';
+  return '';
+}
+
 function renderToday() {
-  const rec = getDayRecord(getTodayKey());
+  const today = getTodayKey();
+  const rec = getDayRecord(selectedKey);
+
+  const rel = relativeLabel(selectedKey, today);
+  document.getElementById('date-display').textContent =
+    rel ? `${formatDateJP(selectedKey)}・${rel}` : formatDateJP(selectedKey);
+  document.getElementById('next-day').disabled = selectedKey >= today;
+  document.getElementById('today-jump').classList.toggle('hidden', selectedKey === today);
 
   document.querySelectorAll('.button-group').forEach(group => {
     const val = rec[group.dataset.category];
